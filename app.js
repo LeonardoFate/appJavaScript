@@ -3,7 +3,7 @@ class Product {
   constructor(name, price, year) {
     this.name = name;
     this.price = price;
-    this.year = year;https://www.youtube.com/watch?v=nqre9kKFRpc&t=900s
+    this.year = year;
   }
 }
 
@@ -35,11 +35,23 @@ class UI {
   deleteProduct(element) {
     if(element.name === 'delete'){
         element.parentElement.parentElement.remove();
-            this.showMessage("Product Deleted Succsssfully", "success");
+            this.showMessage("Producto Eliimnado", "success");
     }
   }
 
-  showMessage() {}
+  showMessage(message, cssClass) {
+    const div = document.createElement('div');
+    div.className = `alert alert-${cssClass} mt-2` ;
+    div.appendChild(document.createTextNode(message));
+    //showing in DOM
+      const container = document.querySelector('.container');
+      const app = document.querySelector('#App');
+      container.insertBefore(div, app);
+      setTimeout(function () { 
+        document.querySelector('.alert').remove();
+       }, 1000)
+
+  }
 }
 
 //DOM Events
@@ -53,9 +65,15 @@ document
 
      const product = new Product(name, price, year);
         const ui =  new UI();
+
+        if(name === '' || price ==='' || year === ''){
+        return ui.showMessage('Complete los campos', 'danger');
+
+        }
+
         ui.addProduct(product);
         ui.resetForm();
-
+        ui.showMessage('Producto Agregado', 'success')
     e.preventDefault();
   });
 
