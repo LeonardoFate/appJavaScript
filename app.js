@@ -3,7 +3,7 @@ class Product {
   constructor(name, price, year) {
     this.name = name;
     this.price = price;
-    this.year = year;
+    this.year = year;https://www.youtube.com/watch?v=nqre9kKFRpc&t=900s
   }
 }
 
